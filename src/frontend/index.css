@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Font Faces ─────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* ── School Blue & White Palette (OKLCH) ─────────────────────────── */
+    --background:     0.98 0.004 240;
+    --foreground:     0.18 0.03 240;
+
+    --card:           1 0 0;
+    --card-foreground: 0.18 0.03 240;
+
+    --popover:        1 0 0;
+    --popover-foreground: 0.18 0.03 240;
+
+    /* Deep royal blue primary */
+    --primary:        0.38 0.15 250;
+    --primary-foreground: 0.98 0 0;
+
+    /* Light blue secondary */
+    --secondary:      0.94 0.025 235;
+    --secondary-foreground: 0.28 0.08 245;
+
+    /* Muted slate */
+    --muted:          0.94 0.012 230;
+    --muted-foreground: 0.52 0.04 240;
+
+    /* Accent — bright sky blue */
+    --accent:         0.88 0.05 235;
+    --accent-foreground: 0.25 0.1 250;
+
+    /* Destructive */
+    --destructive:    0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    --border:         0.88 0.02 240;
+    --input:          0.88 0.02 240;
+    --ring:           0.48 0.12 250;
+
+    /* Chart */
+    --chart-1: 0.38 0.15 250;
+    --chart-2: 0.55 0.12 220;
+    --chart-3: 0.70 0.09 195;
+    --chart-4: 0.82 0.06 180;
+    --chart-5: 0.60 0.14 265;
+
+    /* Sidebar */
+    --sidebar:                0.38 0.15 250;
+    --sidebar-foreground:     0.98 0 0;
+    --sidebar-primary:        0.70 0.12 235;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent:         0.30 0.10 250;
+    --sidebar-accent-foreground: 0.98 0 0;
+    --sidebar-border:         0.45 0.12 250;
+    --sidebar-ring:           0.60 0.10 240;
+
+    /* Custom school tokens */
+    --school-blue:      0.38 0.15 250;
+    --school-blue-mid:  0.52 0.14 240;
+    --school-blue-light: 0.88 0.05 235;
+    --school-blue-dark:  0.22 0.10 255;
+    --school-gold:       0.78 0.16 80;
+    --school-white:      1 0 0;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  }
+}
+
+/* ─── Utility Classes ─────────────────────────────────────────────────────── */
+@layer utilities {
+  .school-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(0.22 0.10 255) 0%,
+      oklch(0.38 0.15 250) 50%,
+      oklch(0.52 0.14 240) 100%
+    );
+  }
+
+  /* ── Hero overlay: deeper, richer, directional ── */
+  .hero-overlay {
+    background: linear-gradient(
+      105deg,
+      oklch(0.12 0.10 258 / 0.88) 0%,
+      oklch(0.20 0.12 252 / 0.72) 45%,
+      oklch(0.15 0.08 248 / 0.55) 100%
+    );
+  }
+
+  /* ── Section pattern: finer, subtler dot grid ── */
+  .section-pattern {
+    background-image: radial-gradient(
+      circle at 2px 2px,
+      oklch(0.52 0.14 240 / 0.10) 1px,
+      transparent 0
+    );
+    background-size: 28px 28px;
+  }
+
+  /* ── Page header: gradient depth + decorative geometry ── */
+  .page-header-bg {
+    background: linear-gradient(
+      135deg,
+      oklch(0.20 0.10 258) 0%,
+      oklch(0.35 0.15 252) 55%,
+      oklch(0.42 0.14 245) 100%
+    );
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-header-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      circle at 2px 2px,
+      oklch(0.70 0.10 240 / 0.07) 1px,
+      transparent 0
+    );
+    background-size: 24px 24px;
+    pointer-events: none;
+  }
+
+  .page-header-bg::after {
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: oklch(0.55 0.16 240 / 0.12);
+    pointer-events: none;
+  }
+
+  /* ── Card: left-accent variant ── */
+  .card-accent {
+    @apply relative border border-border rounded-xl bg-white overflow-hidden;
+    box-shadow: 0 1px 3px 0 oklch(0.38 0.15 250 / 0.08), 0 1px 2px -1px oklch(0.38 0.15 250 / 0.06);
+  }
+
+  .card-accent::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, oklch(0.52 0.16 240), oklch(0.35 0.15 252));
+    border-radius: 4px 0 0 4px;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1;
+    &:hover {
+      box-shadow: 0 10px 32px -4px oklch(0.38 0.15 250 / 0.18), 0 4px 12px -2px oklch(0.38 0.15 250 / 0.12);
+    }
+  }
+
+  .nav-link-active {
+    @apply text-white font-semibold border-b-2 border-white;
+  }
+
+  .text-school-blue {
+    color: oklch(var(--school-blue));
+  }
+
+  .bg-school-blue {
+    background-color: oklch(var(--school-blue));
+  }
+
+  .bg-school-blue-dark {
+    background-color: oklch(var(--school-blue-dark));
+  }
+
+  .bg-school-blue-light {
+    background-color: oklch(var(--school-blue-light));
+  }
+
+  .text-school-gold {
+    color: oklch(var(--school-gold));
+  }
+
+  /* ── Gold accent divider ── */
+  .gold-divider {
+    display: inline-block;
+    width: 48px;
+    height: 3px;
+    border-radius: 2px;
+    background: oklch(var(--school-gold));
+    margin-top: 0.5rem;
+  }
+}
